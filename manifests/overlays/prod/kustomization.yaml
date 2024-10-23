@@ -7,6 +7,6 @@ configMapGenerator:
 - files:
   - application.yml
   name: "sampleapp1-82240947-configmap"
-patchesStrategicMerge:
+patches:  # patchesStrategicMerge에서 patches로 변경
 - deployment.yaml
 - ingress.yaml

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: "sampleapp1-82240947"
-          image: cepgbaseacr.azurecr.io/sampleapp1:latest
+          image: cepgbaseacr.azurecr.io/sampleapp1:0.0.1-SNAPSHOT
           command: ["java", "-jar", "/app.jar"]
           args: ["--spring.config.location=file:/config/application.yml"]
           volumeMounts:
