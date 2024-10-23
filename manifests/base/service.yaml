@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: cloud-sample
+  name: my-sampleapp1-82240947
 spec:
-    ports:
-    - port: 8080 
-    selector:
-        app: cloud-sample
+  ports:
+    - port: 8080
+  selector:
+    app: "sampleapp1-82240947"
+

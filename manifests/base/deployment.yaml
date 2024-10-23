@@ -1,19 +1,19 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloud-sample 
+  name: "sampleapp1-82240947"  # 애플리케이션 이름과 사번
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-sample
+      app: "sampleapp1-82240947"
   template:
     metadata:
       labels:
-        app: cloud-sample 
+        app: "sampleapp1-82240947"
     spec:
       containers:
-        - name: cloud-sample 
-          image: cepgstapacr.azurecr.io/cloud-sample
+        - name: "sampleapp1-82240947"
+          image: cepgbaseacr.azurecr.io/sampleapp1:latest  # ACR에서 이미지 가져오기
           ports:
-          - containerPort: 8080
+            - containerPort: 8080

@@ -1,17 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cloud-sample-ingress
+  name: "sampleapp1-82240947-ingress"
 spec:
   ingressClassName: ingress-internal
   rules:
-  - host: cloud-sample.cepg-aa.kubepia.net
+  - host: "sampleapp1-82240947.ce-aa.kubepia.net"  # 경로 설정
     http:
       paths:
       - path: /
         backend:
           service:
-            name: cloud-sample
+            name: my-sampleapp1-82240947
             port:
               number: 8080
         pathType: Prefix
+
