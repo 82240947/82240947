@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "sampleapp1-82240947"
+  namespace: 82240947  # 네임스페이스 추가
 spec:
   replicas: 1
   selector:
@@ -12,6 +13,8 @@ spec:
       labels:
         app: "sampleapp1-82240947"
     spec:
+      imagePullSecrets:  # ACR에 접근하기 위한 Secret 이름
+        - name: REGISTRY_USERNAME  
       containers:
         - name: "sampleapp1-82240947"
           image: cepgbaseacr.azurecr.io/sampleapp1:latest
@@ -35,4 +38,3 @@ spec:
             items:
               - key: application.yml
                 path: application.yml
-
