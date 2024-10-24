@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://cepg-aa-std-db.postgres.database.azure.com:5432
-    username: ktds
-    password: ktds!1234
+    url: jdbc:postgresql://cepg-aa-std-db.postgres.database.azure.com:5432/postgres  # DB 호스트
+    username: ${DB_USER}  # DB 사용자명
+    password: ${DB_PASSWORD}  # DB 비밀번호
   jpa:
     show-sql: true
     hibernate:
@@ -15,17 +15,17 @@ spring:
         format_sql: true
   sql:
     init:
-      # mode: always
-      mode: embedded
+      mode: embedded  # SQL 초기화 모드
 
 server:
-  port: 8080
+  port: 8080  # 서버 포트
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*"  # 모든 관리 엔드포인트 노출
 
 pvc:
-  path: /mnt/cloud-sample
+  path: /mnt/cloud-sample  # PVC 경로 설정
+

@@ -1,12 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../base
-- pvc.yaml
+  - ../../base
+  - pvc.yaml
 configMapGenerator:
-- files:
-  - application.yml
-  name: "sampleapp1-82240947-configmap"
+  - files:
+    - application.yml
+    name: "sampleapp1-82240947-configmap"
 patchesStrategicMerge:
-- deployment.yaml
-- ingress.yaml
+  - deployment.yaml
+  - ingress.yaml
