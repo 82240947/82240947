@@ -4,9 +4,10 @@ resources:
   - ../../base
   - pvc.yaml
 configMapGenerator:
-  - files:
-    - application.yml
-    name: "sampleapp1-82240947-configmap"
+  - name: sampleapp1-82240947-configmap
+    files:
+      - application.yml
 patchesStrategicMerge:
   - deployment.yaml
   - ingress.yaml
+

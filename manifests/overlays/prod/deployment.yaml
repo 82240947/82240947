@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "sampleapp1-82240947"
-  namespace: 82240947  # 네임스페이스 추가
 spec:
   replicas: 1
   selector:
@@ -13,28 +12,40 @@ spec:
       labels:
         app: "sampleapp1-82240947"
     spec:
-      imagePullSecrets:  # ACR에 접근하기 위한 Secret 이름
-        - name: REGISTRY_USERNAME  
       containers:
         - name: "sampleapp1-82240947"
           image: cepgbaseacr.azurecr.io/sampleapp1:latest
-          command: ["java", "-jar", "/app.jar"]
-          args: ["--spring.config.location=file:/config/application.yml"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-secret
+                  key: password
           volumeMounts:
             - mountPath: /mnt/cloud-sample
-              name: "sampleapp1-82240947-volume"
+              name: sampleapp1-volume
               readOnly: false
               subPath: cloud-sample
             - mountPath: /config
               name: application-properties
               readOnly: true
+              
       volumes:
-        - name: "sampleapp1-82240947-volume"
+        - name: sampleapp1-volume
           persistentVolumeClaim:
             claimName: cepg-aa-std-pvc
         - name: application-properties
           configMap:
-            name: "sampleapp1-82240947-configmap"
+            name: sampleapp1-configmap
             items:
               - key: application.yml
                 path: application.yml
+            defaultMode: 420
+

@@ -3,5 +3,22 @@ kind: ConfigMap
 metadata:
   name: sampleapp1-82240947-configmap
 data:
-  DB_HOST: "ce-aa-psql.postgres.database.azure.com"
-  DB_NAME: "cloud_sample"
+  application.yml: |
+    spring:
+      datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://cepg-aa-std-db.postgres.database.azure.com:5432/cloud_sample
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+      jpa:
+        show-sql: true
+        hibernate:
+          ddl-auto: update
+        defer-datasource-initialization: true
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+            format_sql: true
+    server:
+      port: 8080
+
