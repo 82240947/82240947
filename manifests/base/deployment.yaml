@@ -14,6 +14,18 @@ spec:
     spec:
       containers:
         - name: "sampleapp1-82240947"
-          image: cepgbaseacr.azurecr.io/sampleapp1:0.0.1-SNAPSHOT  # ACR에서 이미지 가져오기
+          image: cepgbaseacr.azurecr.io/sampleapp1:latest  # ACR에서 이미지 가져오기
           ports:
             - containerPort: 8080
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-secret
+                  key: password
+

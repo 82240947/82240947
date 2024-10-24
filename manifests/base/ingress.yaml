@@ -2,17 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "sampleapp1-82240947-ingress"
+  namespace: "82240947"  
 spec:
-  ingressClassName: ingress-internal
+  ingressClassName: nginx
   rules:
-  - host: "sampleapp1-82240947.ce-aa.kubepia.net"  # 경로 설정
-    http:
-      paths:
-      - path: /
-        backend:
-          service:
-            name: my-sampleapp1-82240947
-            port:
-              number: 8080
-        pathType: Prefix
+    - host: "sampleapp1-82240947.ce-aa.kubepia.net"  # 경로 설정
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-sampleapp1-82240947
+                port:
+                  number: 8080
 
