@@ -3,7 +3,7 @@ name: GitHub Action CI
 on: workflow_dispatch
 
 env:
-  IMAGE_NAME: "sampleapp1-82240947"  # 수정된 이미지 이름
+  IMAGE_NAME: "sampleapp-82240947"  # 수정된 이미지 이름
 
 jobs:
   build:
@@ -43,7 +43,7 @@ jobs:
         docker build -t ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} -f Dockerfile-maven .
         docker tag ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
-    - name: 'Push image'
+    - name: 'Push Docker Image to ACR'
       run: |
         docker push ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
