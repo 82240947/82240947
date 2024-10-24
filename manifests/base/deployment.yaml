@@ -1,19 +1,31 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloud-sample 
+  name: sampleapp1-82240947
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-sample
+      app: sampleapp1-82240947
   template:
     metadata:
       labels:
-        app: cloud-sample 
+        app: sampleapp1-82240947
     spec:
       containers:
-        - name: cloud-sample 
-          image: cepgstapacr.azurecr.io/cloud-sample
+        - name: sampleapp1
+          image: cepgbaseacr.azurecr.io/sampleapp1:latest
           ports:
-          - containerPort: 8080
+            - containerPort: 8080
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-secret
+                  key: password
+

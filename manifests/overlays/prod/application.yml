@@ -2,11 +2,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://cepg-aa-std-db.postgres.database.azure.com:5432/cloud_sample
-    username: ktds
-    password: ktds!1234
-    hikari:
-      maximum-pool-size: 2
-      minimum-idle: 2
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     hibernate:
@@ -18,7 +15,6 @@ spring:
         format_sql: true
   sql:
     init:
-      # mode: always
       mode: embedded
 
 server:
@@ -32,3 +28,4 @@ management:
 
 pvc:
   path: /mnt/cloud-sample
+

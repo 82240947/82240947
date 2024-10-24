@@ -1,4 +1,5 @@
 resources:
-- deployment.yaml
-- service.yaml
-- ingress.yaml
+  - deployment.yaml  # 수정된 Deployment 파일
+  - service.yaml     # 서비스 정의 (기존)
+  - ingress.yaml     # 수정된 Ingress 파일 (기존)
+
