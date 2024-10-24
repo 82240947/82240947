@@ -1,27 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "sampleapp1-82240947"  # 애플리케이션 이름과 사번
-  namespace: 82240947  # 네임스페이스 추가
+  name: sampleapp1-82240947
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "sampleapp1-82240947"
+      app: sampleapp1-82240947
   template:
     metadata:
       labels:
-        app: "sampleapp1-82240947"
+        app: sampleapp1-82240947
     spec:
-      imagePullSecrets:
-        - name: REGISTRY_USERNAME  # ACR에 접근하기 위한 Secret 이름
       containers:
-        - name: "sampleapp1-82240947"
-          image: cepgbaseacr.azurecr.io/sampleapp1:latest  # ACR에서 이미지 가져오기
+        - name: sampleapp1
+          image: cepgbaseacr.azurecr.io/sampleapp1:latest
           ports:
             - containerPort: 8080
           env:
-            - name: DB_USER
+            - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: app-db-secret
@@ -31,3 +28,4 @@ spec:
                 secretKeyRef:
                   name: app-db-secret
                   key: password
+
